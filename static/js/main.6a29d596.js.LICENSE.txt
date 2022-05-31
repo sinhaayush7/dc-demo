@@ -4,8 +4,6 @@ object-assign
 @license MIT
 */
 
-/*! https://mths.be/utf8js v2.1.2 by @mathias */
-
 /**
  * React Router v6.2.2
  *
