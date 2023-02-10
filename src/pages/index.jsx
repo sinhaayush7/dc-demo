@@ -7,7 +7,6 @@ import { CallForm } from "../components/callform.wrapper";
 import { CardRow } from "../components/card.component";
 import { useStateWithCB } from "../hooks/useStateWithCallback";
 import { generateCuid } from "../utils/cuid.generator";
-import { scAccountId, scApikey } from "../utils/constants";
 export const EntryPage = () => {
 
   const [dcClient, setDcClient] = useState(null)
@@ -40,6 +39,7 @@ export const EntryPage = () => {
         ...initOptions,
         clevertap
       }).then(res => {
+        window.signedCallClient = res
         setDcClient(res)
         setIsConnected(res.isEnabled())
         // scroll to card row section

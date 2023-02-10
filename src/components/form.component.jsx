@@ -20,15 +20,10 @@ const generateRandomCuid = () => (
  */
 export const AuthForm = ({ submitFn, connected, disconnect }) => {
   const [cuid, setCuid] = useState(generateRandomCuid)
-  const [dcAccId, setDcAccId] = useState(scAccountId)
-  const [dcApikey, setDcApikey] = useState(scApikey)
   const [ctAccId, setCtAccId] = useState("ZWW-WWW-WW4Z")
   const [ctRegion, setCTRegion] = useState("in1")
-  const [cc, setCC] = useState("")
-  const [phone, setPhone] = useState("")
 
   const onRegionChange = (value) => {
-    console.log(value)
     setCTRegion(value[0]?.label)
     setCtAccId(value[0]?.value)
   }
@@ -38,11 +33,9 @@ export const AuthForm = ({ submitFn, connected, disconnect }) => {
     if (!connected) {
       submitFn({
         cuid: cuid,
-        accountId: dcAccId,
-        apikey: dcApikey,
+        accountId: scAccountId,
+        apikey: scApikey,
         ctAccId,
-        cc,
-        phone,
         ctRegion
       })
     } else {
