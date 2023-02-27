@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { ctAccountAndRegions, scAccountId, scApikey } from "../utils/constants";
+import { ctAccountAndRegions } from "../utils/constants";
 import Select from 'react-dropdown-select';
 
 
@@ -20,12 +20,14 @@ const generateRandomCuid = () => (
  */
 export const AuthForm = ({ submitFn, connected, disconnect }) => {
   const [cuid, setCuid] = useState(generateRandomCuid)
-  const [ctAccId, setCtAccId] = useState("ZWW-WWW-WW4Z")
+  const [ctAccId, setCtAccId] = useState("")
+  const[scAccountId, setScAccountId] = useState('')
+  const[scApikey, setScApikey] = useState('')
   const [ctRegion, setCTRegion] = useState("in1")
 
   const onRegionChange = (value) => {
     setCTRegion(value[0]?.label)
-    setCtAccId(value[0]?.value)
+    // setCtAccId(value[0]?.value)
   }
   
   const submit = (e) => {
@@ -50,79 +52,61 @@ export const AuthForm = ({ submitFn, connected, disconnect }) => {
           <form action="#" className="text-left" onSubmit={submit}>
             <div className="shadow overflow-hidden sm:rounded-md">
               <div className="px-4 py-5 bg-white sm:p-6">
-                <div className="grid gap-6 mb-6">
-                  <div className="col-span-12 sm:col-span-12">
-                    <label htmlFor="cuid" className="block text-sm font-medium text-gray-700">
-                      Cuid
-                    </label>
-                    <div>
-                      <div className="mt-1 flex rounded-md shadow-sm">
-                        <input
-                          type="text"
-                          name="cuid"
-                          id="cuid"
-                          autoComplete="cuid"
-                          className="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-l-md sm:text-sm border-gray-300"
-                          required={true}
-                          value={cuid}
-                          onChange={e => setCuid(e.target.value)}
-                          placeholder="email@clevertap.com"
-                        />
-                        <span className="inline-flex items-center px-3 rounded-r-md border border-l-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
-                          @clevertap.com
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+               
                 <div className="grid gap-6 ">
-                  {/* <div className="col-span-12 sm:col-span-12">
+                  <div className="col-span-12 sm:col-span-12">
                     <label htmlFor="last-name" className="block text-sm font-medium text-gray-700">
-                      DC Account Id *
+                      CT Account Id *
                     </label>
                     <input
                       type="text"
                       name="dc-accountid"
                       id="dc-accountid"
-                      placeholder="Direct Call's account id available in the dashboard"
+                      placeholder="Clevertap's account id available in the dashboard"
                       autoComplete="family-name"
                       className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                       required={true}
-                      value={dcAccId}
-                      disabled={true}
-                      onChange={e => setDcAccId(e.target.value)}
-                    />
-                  </div> */}
-{/* 
-                  <div className="col-span-12 sm:col-span-12">
-                    <label htmlFor="dc-api-key" className="block text-sm font-medium text-gray-700">
-                      DC Api Key *
-                    </label>
-                    <input
-                      type="text"
-                      name="dc-api-key"
-                      id="dc-api-key"
-                      autoComplete="dc-apikey"
-                      placeholder="Direct Call's api key available in the dashboard"
-                      className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                      required={true}
-                      value={dcApikey}
-                      disabled={true}
-                      onChange={e => setDcApikey(e.target.value)}
-                    />
-                  </div> */}
-                  <div className="col-span-12 sm:col-span-12" style={{"paddingBottom": 100}}>
-                    <label htmlFor="sc-region" className="block text-sm font-medium text-gray-700">
-                      Select Region
-                    </label>
-                    <Select
-                      options={ctAccountAndRegions}
-                      id="sc-region"
-                      onChange={(values) => onRegionChange(values)}
-                      values={[{ label: "in1", value: "ZWW-WWW-WW4Z" }]}
+                      value={ctAccId}
+                      // disabled={true}
+                      onChange={e => setCtAccId(e.target.value)}
                     />
                   </div>
 
+                  <div className="col-span-12 sm:col-span-12">
+                    <label htmlFor="last-name" className="block text-sm font-medium text-gray-700">
+                      SC Account Id *
+                    </label>
+                    <input
+                      type="text"
+                      name="dc-accountid"
+                      id="dc-accountid"
+                      placeholder="Signed Call's account id available in the dashboard"
+                      autoComplete="family-name"
+                      className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                      required={true}
+                      value={scAccountId}
+                      // disabled={true}
+                      onChange={e => setScAccountId(e.target.value)}
+                    />
+                  </div>
+
+                  <div className="col-span-12 sm:col-span-12">
+                    <label htmlFor="dc-api-key" className="block text-sm font-medium text-gray-700">
+                      SC Api Key *
+                    </label>
+                    <input
+                      type="text"
+                      name="sc-api-key"
+                      id="sc-api-key"
+                      autoComplete="dc-apikey"
+                      placeholder="Signed Call's api key available in the dashboard"
+                      className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                      required={true}
+                      value={scApikey}
+                      // disabled={true}
+                      onChange={e => setScApikey(e.target.value)}
+                    />
+                  </div>
                   {/* <div className="col-span-6">
                     <label htmlFor="cc" className="block text-sm font-medium text-gray-700">
                       CC
@@ -155,6 +139,43 @@ export const AuthForm = ({ submitFn, connected, disconnect }) => {
                     />
                   </div> */}
                 </div>
+                <br/>
+                <div className="grid gap-6 mb-6">
+                  <div className="col-span-12 sm:col-span-12">
+                    <label htmlFor="cuid" className="block text-sm font-medium text-gray-700">
+                      Cuid 
+                    </label>
+                    <div>
+                      <div className="mt-1 flex rounded-md shadow-sm">
+                        <input
+                          type="text"
+                          name="cuid"
+                          id="cuid"
+                          autoComplete="cuid"
+                          className="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-l-md sm:text-sm border-gray-300"
+                          required={true}
+                          value={cuid}
+                          onChange={e => setCuid(e.target.value)}
+                          placeholder="email@clevertap.com"
+                        />
+                        <span className="inline-flex items-center px-3 rounded-r-md border border-l-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
+                          @clevertap.com
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-span-12 sm:col-span-12" style={{"paddingBottom": 100}}>
+                    <label htmlFor="sc-region" className="block text-sm font-medium text-gray-700">
+                      Select Region
+                    </label>
+                    <Select
+                      options={ctAccountAndRegions}
+                      id="sc-region"
+                      onChange={(values) => onRegionChange(values)}
+                      values={[{ label: "in1" }]}
+                    />
+                  </div>
               </div>
               <div className="px-4 py-3 bg-gray-50 text-right sm:px-6 mt-5">
                 {
