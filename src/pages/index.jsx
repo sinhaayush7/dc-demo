@@ -24,15 +24,21 @@ export const EntryPage = () => {
   const callerRef = useRef(null)
   const receiverRef = useRef(null)
 
+  clevertap.privacy.push({ optOut: false })
+  clevertap.privacy.push({ useIP: false })
+  clevertap.init('679-8Z7-W66Z', 'sk1')
+  window.clevertap = clevertap
+
 
   // signin and validate the options
   const onSubmit = (initOptions) => {
     console.log("hit on connect")
     setCuid(initOptions.cuid)
     try {
-      clevertap.privacy.push({ optOut: false })
-      clevertap.privacy.push({ useIP: false })
-      clevertap.init(initOptions.ctAccId, initOptions.ctRegion)
+      // clevertap.privacy.push({ optOut: false })
+      // clevertap.privacy.push({ useIP: false })
+      // clevertap.init(initOptions.ctAccId, initOptions.ctRegion)
+      let clevertap = window.clevertap
       console.log({initOptions})
       // console.log(clevertap, DirectCallSDK)
       initSignedCall({
