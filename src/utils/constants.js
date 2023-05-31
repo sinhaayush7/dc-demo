@@ -5,7 +5,6 @@ export const ctAccountAndRegions = [
   // { label: "eu1", value: "eu1" },
   // { label: "us1", value: "us1"}
 ]
-export const scAccountId = "640f4e74fe2466eed4a7ec45"
-export const scApikey = "xzyoaK5rgdIzHlfVU3gmolqcD0YLrghXhnOd0hcFOytg7hlBWJmIdtzmLTIs8U8M"
-// export const scAccountId = "61a52046f56a14cb19a1e9cc"
-// export const scApikey = "9dcced09dae16c5e3606c22346d92361b77efdb360425913850bea4f22d812dd"
+
+export const scAccountId = "61a52046f56a14cb19a1e9cc"
+export const scApikey = "9dcced09dae16c5e3606c22346d92361b77efdb360425913850bea4f22d812dd"
