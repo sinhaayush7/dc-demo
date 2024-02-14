@@ -3,10 +3,11 @@ import { useState } from "react"
 export const CallForm = ({ call, myref }) => {
   const [cuid, setCuid] = useState("")
   const [context, setContext] = useState("")
+  const [imageUrl, setImageUrl] = useState("")
 
   const makecall = (e) => {
     e.preventDefault()
-    call({ cuid, context })
+    call({ cuid, context, imageUrl })
   }
 
   return (
@@ -40,8 +41,7 @@ export const CallForm = ({ call, myref }) => {
                   </div>
                 </div>
               </div>
-              <div className="grid gap-6 ">
-
+              <div className="grid gap-6 mb-6 ">
                 <div className="col-span-12 sm:col-span-12">
                   <label htmlFor="context" className="block text-sm font-medium text-gray-700">
                     Context *
@@ -56,6 +56,24 @@ export const CallForm = ({ call, myref }) => {
                     required={true}
                     value={context}
                     onChange={e => setContext(e.target.value)}
+                  />
+                </div>
+              </div>
+              <div className="grid gap-6 ">
+                <div className="col-span-12 sm:col-span-12">
+                  <label htmlFor="Image_url" className="block text-sm font-medium text-gray-700">
+                    Image Url 
+                  </label>
+                  <input
+                    type="text"
+                    name="Image_url"
+                    id="Image_url"
+                    placeholder="Image url"
+                    autoComplete="family-name"
+                    className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                    required={false}
+                    value={imageUrl}
+                    onChange={e => setImageUrl(e.target.value)}
                   />
                 </div>
               </div>

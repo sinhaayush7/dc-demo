@@ -74,8 +74,12 @@ export const EntryPage = () => {
     }
   }
 
-  const makecall = ({ cuid, context }) => {
-    dcClient.call(cuid, context).then(res => console.log(res)).catch(err => console.log(err))
+  const makecall = ({ cuid, context, imageUrl }) => {
+    let callOptions = {
+      receiver_image: imageUrl, // optional, string
+      initiator_image: imageUrl // optional, string
+    };
+    dcClient.call(cuid, context, callOptions).then(res => console.log(res)).catch(err => console.log(err))
   }
   // disconnects the sdk
   const disconnect = () => {
