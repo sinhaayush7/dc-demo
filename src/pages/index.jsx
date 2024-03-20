@@ -1,12 +1,13 @@
 
 import { AuthForm } from "../components/form.component";
-import { initSignedCall } from '../libs/clevertap-signedcall.module'
+import { initSignedCall } from 'clevertap-signed-call'
 import clevertap from 'clevertap-web-sdk'
 import { useRef, useState } from "react";
 import { CallForm } from "../components/callform.wrapper";
 import { CardRow } from "../components/card.component";
 import { useStateWithCB } from "../hooks/useStateWithCallback";
 import { generateCuid } from "../utils/cuid.generator";
+import showToast from "../utils/showToast";
 export const EntryPage = () => {
 
   const [dcClient, setDcClient] = useState(null)
@@ -39,7 +40,6 @@ export const EntryPage = () => {
       // clevertap.privacy.push({ useIP: false })
       // clevertap.init(initOptions.ctAccId, initOptions.ctRegion)
       let clevertap = window.clevertap
-      console.log({initOptions})
       // console.log(clevertap, DirectCallSDK)
       initSignedCall({
         ...initOptions,
@@ -53,7 +53,10 @@ export const EntryPage = () => {
         cardRef.current.scrollIntoView({
           behavior: 'smooth', block: 'center'
         })
-      }).catch(err => console.log(err))
+      }).catch(err => {
+        console.log(err)
+        showToast(err, 'error')
+      })
 
     } catch (err) {
       console.log(err)
@@ -75,11 +78,19 @@ export const EntryPage = () => {
   }
 
   const makecall = ({ cuid, context, imageUrl }) => {
+    if (!window.navigator.onLine) {
+      showToast("Your internet is not connected", "error")
+    }
     let callOptions = {
       receiver_image: imageUrl, // optional, string
       initiator_image: imageUrl // optional, string
     };
-    dcClient.call(cuid, context, callOptions).then(res => console.log(res)).catch(err => console.log(err))
+    dcClient.call(cuid, context, callOptions).then(res => {
+      console.log(res)
+    }).catch(err => {
+      showToast(err, 'error')
+      console.log(err)
+    })
   }
   // disconnects the sdk
   const disconnect = () => {
@@ -92,7 +103,7 @@ export const EntryPage = () => {
   return (
     <>
       <h1 className="text-6xl	mt-6 pt-28">Signed Call</h1>
-      <AuthForm submitFn={onSubmit} connected={isConnected} disconnect={disconnect}/>
+      <AuthForm submitFn={onSubmit} connected={isConnected} disconnect={disconnect} />
       <div className={isConnected ? "block" : "hidden"}>
         <CardRow myref={cardRef} action={showCallerOrReceiver} />
       </div>

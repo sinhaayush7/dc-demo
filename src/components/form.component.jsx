@@ -1,7 +1,5 @@
 import { useState } from "react"
-import { ctAccountAndRegions,scAccountId, scApikey} from "../utils/constants";
-import Select from 'react-dropdown-select';
-
+import { scAccountId, scApikey } from "../utils/constants";
 
 function randomString(length, chars) {
   var result = '';
@@ -29,7 +27,7 @@ export const AuthForm = ({ submitFn, connected, disconnect }) => {
   //   setCTRegion(value[0]?.label)
   //   setCtAccId(value[0]?.vaZlue)
   // }
-  
+
   const submit = (e) => {
     e.preventDefault();
     if (!connected) {
@@ -52,7 +50,7 @@ export const AuthForm = ({ submitFn, connected, disconnect }) => {
           <form action="#" className="text-left" onSubmit={submit}>
             <div className="shadow overflow-hidden sm:rounded-md">
               <div className="px-4 py-5 bg-white sm:p-6">
-               
+
                 <div className="grid gap-6 ">
                   {/* <div className="col-span-12 sm:col-span-12">
                     <label htmlFor="last-name" className="block text-sm font-medium text-gray-700">
@@ -139,11 +137,11 @@ export const AuthForm = ({ submitFn, connected, disconnect }) => {
                     />
                   </div> */}
                 </div>
-                <br/>
+                <br />
                 <div className="grid gap-6 mb-6">
                   <div className="col-span-12 sm:col-span-12">
                     <label htmlFor="cuid" className="block text-sm font-medium text-gray-700">
-                      Cuid 
+                      Cuid
                     </label>
                     <div>
                       <div className="mt-1 flex rounded-md shadow-sm">
