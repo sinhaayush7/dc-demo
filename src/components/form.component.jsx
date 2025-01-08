@@ -18,16 +18,6 @@ const generateRandomCuid = () => (
  */
 export const AuthForm = ({ submitFn, connected, disconnect }) => {
   const [cuid, setCuid] = useState(generateRandomCuid)
-  // const [ctAccId, setCtAccId] = useState("679-8Z7-W66Z")
-  // const[scAccountId, setScAccountId] = useState('')
-  // const[scApikey, setScApikey] = useState('')
-  // const [ctRegion, setCTRegion] = useState("sk1")
-
-  // const onRegionChange = (value) => {
-  //   setCTRegion(value[0]?.label)
-  //   setCtAccId(value[0]?.vaZlue)
-  // }
-
   const submit = (e) => {
     e.preventDefault();
     if (!connected) {
@@ -35,8 +25,6 @@ export const AuthForm = ({ submitFn, connected, disconnect }) => {
         cuid: cuid,
         accountId: scAccountId,
         apikey: scApikey,
-        // ctAccId,
-        // ctRegion
       })
     } else {
       disconnect()
@@ -50,92 +38,7 @@ export const AuthForm = ({ submitFn, connected, disconnect }) => {
           <form action="#" className="text-left" onSubmit={submit}>
             <div className="shadow overflow-hidden sm:rounded-md">
               <div className="px-4 py-5 bg-white sm:p-6">
-
                 <div className="grid gap-6 ">
-                  {/* <div className="col-span-12 sm:col-span-12">
-                    <label htmlFor="last-name" className="block text-sm font-medium text-gray-700">
-                      CT Account Id *
-                    </label>
-                    <input
-                      type="text"
-                      name="dc-accountid"
-                      id="dc-accountid"
-                      placeholder="Clevertap's account id available in the dashboard"
-                      autoComplete="family-name"
-                      className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                      required={true}
-                      value={ctAccId}
-                      // disabled={true}
-                      onChange={e => setCtAccId(e.target.value)}
-                    />
-                  </div> */}
-
-                  {/* <div className="col-span-12 sm:col-span-12">
-                    <label htmlFor="last-name" className="block text-sm font-medium text-gray-700">
-                      SC Account Id *
-                    </label>
-                    <input
-                      type="text"
-                      name="dc-accountid"
-                      id="dc-accountid"
-                      placeholder="Signed Call's account id available in the dashboard"
-                      autoComplete="family-name"
-                      className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                      required={true}
-                      value={scAccountId}
-                      // disabled={true}
-                      onChange={e => setScAccountId(e.target.value)}
-                    />
-                  </div> */}
-
-                  {/* <div className="col-span-12 sm:col-span-12">
-                    <label htmlFor="dc-api-key" className="block text-sm font-medium text-gray-700">
-                      SC Api Key *
-                    </label>
-                    <input
-                      type="text"
-                      name="sc-api-key"
-                      id="sc-api-key"
-                      autoComplete="dc-apikey"
-                      placeholder="Signed Call's api key available in the dashboard"
-                      className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                      required={true}
-                      value={scApikey}
-                      // disabled={true}
-                      onChange={e => setScApikey(e.target.value)}
-                    />
-                  </div> */}
-                  {/* <div className="col-span-6">
-                    <label htmlFor="cc" className="block text-sm font-medium text-gray-700">
-                      CC
-                    </label>
-                    <input
-                      type="number"
-                      name="cc"
-                      id="cc"
-                      autoComplete="cc"
-                      className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                      value={cc}
-                      min="1"
-                      onChange={e => setCC(e.target.value)}
-                    />
-                  </div> */}
-
-                  {/* <div className="col-span-6 sm:col-span-6 lg:col-span-6">
-                    <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
-                      Phone
-                    </label>
-                    <input
-                      name="phone"
-                      id="phone"
-                      autoComplete="address-level2"
-                      className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                      value={phone}
-                      min="1"
-                      type="number"
-                      onChange={e => setPhone(e.target.value)}
-                    />
-                  </div> */}
                 </div>
                 <br />
                 <div className="grid gap-6 mb-6">
@@ -163,17 +66,6 @@ export const AuthForm = ({ submitFn, connected, disconnect }) => {
                     </div>
                   </div>
                 </div>
-                {/* <div className="col-span-12 sm:col-span-12" style={{"paddingBottom": 100}}>
-                    <label htmlFor="sc-region" className="block text-sm font-medium text-gray-700">
-                      Select Region
-                    </label>
-                    <Select
-                      options={ctAccountAndRegions}
-                      id="sc-region"
-                      onChange={(values) => onRegionChange(values)}
-                      values={[{ label: "sk1", value : "679-8Z7-W66Z" }]}
-                    />
-                  </div> */}
               </div>
               <div className="px-4 py-3 bg-gray-50 text-right sm:px-6 mt-5">
                 {
